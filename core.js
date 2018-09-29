@@ -85,7 +85,6 @@ module.exports = class Calendar {
         const countWeeks = this.curMonthCountWeeks;
 
         const days = [];
-        const allDays = [];
 
         for (let r = 0; r < countWeeks; r++) {
             let weeks = [];
@@ -99,17 +98,78 @@ module.exports = class Calendar {
                         temp.rest = c + 1;
                     }
                     weeks[c] = temp;
-                    allDays.push(temp);
                 } else {
-                    // weeks[c] = 0;
+                    // weeks[c] = null;
                 }
             }
             days[r] = weeks;
         }
 
+
+        let first = days[0].length ? days[0] : days[1];
+        if (!days[days.length - 1].length) {
+            days.splice(days.length - 1, 1);
+        }
+        let last = days[days.length - 1].length ? days[days.length - 1] : days[days.length - 2];
+
+        const prevs = this.repairPrev(6);
+        const nexts = this.repairNext(7 - last.length);
+
+        for (let d = first.length - 1, p = prevs.length -1; d >= 0; d--) {
+            const cur = first[d];
+            if (!cur) {
+                let temp = {
+                    day: prevs[p],
+                    prev: true,
+                    disabled: true
+                };
+                if (d >= first.length -2) {
+                    temp.rest = d === first.length ? 7 : 6;
+                }
+                first[d] = temp;
+                p--;
+            }
+        }
+
+        last = [...last, ...nexts];
+
+        console.log(first, last);
+
         return {
             days,
-            allDays,
+            month: this.month,
+            year: this.year
         };
     }
+
+
+
+    repairPrev(count) {
+        const countDays = this.allMonthCountDays[this.month -1];
+        const start = countDays - count + 1;
+        const arr = [];
+        for (let i = start; i <= countDays; i++) {
+            arr.push(i);
+        }
+        return arr;
+    }
+
+
+
+    repairNext(count) {
+        const arr = [];
+        for (let i = 1; i <= count; i++) {
+            const temp = {
+                day: i,
+                next: true,
+                disabled: true
+            };
+            if (i >= count - 2) {
+                temp.rest = i === count ? 7 : 6;
+            }
+            arr.push(temp);
+        }
+        return arr;
+    }
+
 };

@@ -147,7 +147,11 @@ module.exports = class Calendar {
     }
 
 
-
+    /**
+     * 补齐月初数据
+     * @param count
+     * @returns {Array}
+     */
     repairPrev(count) {
         const countDays = this.allMonthCountDays[this.month -1];
         const start = countDays - count + 1;

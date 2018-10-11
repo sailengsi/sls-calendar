@@ -1,5 +1,9 @@
 module.exports = class Calendar {
 
+    /**
+     * 构造函数
+     * @param opts
+     */
     constructor(opts = {}) {
         this.D = new Date();
         this.year = opts.year || this.D.getFullYear();

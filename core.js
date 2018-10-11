@@ -2,7 +2,7 @@ module.exports = class Calendar {
 
     /**
      * 构造函数
-     * @param opts
+     * @param opts 初始化参数
      */
     constructor(opts = {}) {
         this.D = new Date();

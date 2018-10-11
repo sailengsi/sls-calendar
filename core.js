@@ -163,7 +163,11 @@ module.exports = class Calendar {
     }
 
 
-
+    /**
+     * 补齐月尾数据
+     * @param count
+     * @returns {Array}
+     */
     repairNext(count) {
         const arr = [];
         for (let i = 1; i <= count; i++) {

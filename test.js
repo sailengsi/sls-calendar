@@ -12,7 +12,7 @@ const calendar = new Calendar({
 
 
 calendar.config({
-    month: 11
+    month: 10
 });
 
 // console.log(`当前 ${calendar.month}月 可遍历的数据结构`, calendar.getDates().days);

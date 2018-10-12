@@ -192,6 +192,7 @@ module.exports = class Calendar {
         const curMonthCountDays = this.allMonthCountDays[nextMonth];
         console.log(nextMonth);
         console.log(curMonthCountDays);
+
     }
 
 };

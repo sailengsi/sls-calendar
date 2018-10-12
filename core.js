@@ -172,4 +172,26 @@ module.exports = class Calendar {
         return arr;
     }
 
+
+    /**
+     * 获取上个月可遍历的数据
+     */
+    getPrevDates() {
+        const prevMonth = this.month <= 0 ? 11 : this.month - 1;
+        const curMonthCountDays = this.allMonthCountDays[prevMonth];
+        console.log(prevMonth);
+        console.log(curMonthCountDays);
+    }
+
+
+    /**
+     * 获取下个月可遍历的数据
+     */
+    getNextDates() {
+        const nextMonth = this.month >= 11 ? 0 : this.month + 1;
+        const curMonthCountDays = this.allMonthCountDays[nextMonth];
+        console.log(nextMonth);
+        console.log(curMonthCountDays);
+    }
+
 };

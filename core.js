@@ -1,9 +1,5 @@
 module.exports = class Calendar {
 
-    /**
-     * 构造函数
-     * @param opts 初始化参数
-     */
     constructor(opts = {}) {
         this.D = new Date();
         this.year = opts.year || this.D.getFullYear();
@@ -147,11 +143,7 @@ module.exports = class Calendar {
     }
 
 
-    /**
-     * 补齐月初数据
-     * @param count
-     * @returns {Array}
-     */
+
     repairPrev(count) {
         const countDays = this.allMonthCountDays[this.month -1];
         const start = countDays - count + 1;
@@ -163,11 +155,7 @@ module.exports = class Calendar {
     }
 
 
-    /**
-     * 补齐月尾数据
-     * @param count
-     * @returns {Array}
-     */
+
     repairNext(count) {
         const arr = [];
         for (let i = 1; i <= count; i++) {
